@@ -1,0 +1,68 @@
+<head>
+    <title>06Games</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href="#Home" style="display: flex; align-items: center; font-weight: bold;">
+            <img src="assets/images/logo.png" style="max-width: 35px;" />06Games
+        </a>
+        <span style="flex: 1;"></span>
+        <span class="main-menu">
+            <a href="#Home">
+                <span>Home</span>
+            </a>
+            <a href="#Games">
+                <span>Games</span>
+            </a>
+            <a href="#Apps">
+                <span>Apps</span>
+            </a>
+            <a href="#Account">
+                <span>Account</span>
+            </a>
+        </span>
+    </header>
+    <content>
+        <div class="loading" style="display: none;"></div>
+        <div class="content" style="height: 100%; overflow: auto;"></div>
+    </content>
+    <footer>
+        <span onclick="fr();">&copy; 06Games. All rights reserved.</span>
+    </footer>
+</body>
+
+<script>
+    $(window).on('hashchange', function () {
+        changeMenu(window.location.hash);
+        $('html,body').scrollTop(0);
+    });
+    $hash = "#Home";
+    if (window.location.hash) $hash = window.location.hash;
+    changeMenu($hash);
+    $('html,body').scrollTop(0);
+
+    var lang = "en";
+    function changeMenu(id) {
+        $('.main-menu > a[href="' + id + '"]').addClass('selected');
+        $('.main-menu > a:not([href="' + id + '"])').removeClass('selected');
+
+        $("content .loading").fadeIn(200);
+        $("content .content").fadeOut(200, function () {
+            $(this).empty().load("pages/" + lang + "/" + id.substr(1).toLowerCase() + ".html", function () {
+                $("content .loading").fadeOut(200);
+                $("content .content").fadeIn(200);
+            });
+        });
+    }
+
+    function fr() {
+        lang = "fr";
+        changeMenu(window.location.hash);
+    }
+</script>

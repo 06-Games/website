@@ -1,9 +1,112 @@
-body {
-    margin: 0;
-    background: #222;
+:root {
+    --content: #2f2f2f;
+    --background: #282828;
 }
 
-header{
-    background: #282828;
+body {
+    color: #ccc;
+    font-family: sans-serif;
+    margin: 0;
+    background: var(--background);
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: inherit;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5 {
+    margin: 0.5em 0 0.1em;
+    font-size: 1em;
+}
+
+header, footer {
+    width: calc(100vw - 1em);
+    padding: 0 0.5em;
+    display: flex;
+    align-items: center;
     height: 50px;
+    position: fixed;
+    left: 0;
+    background: var(--background);
+}
+
+footer {
+    bottom: 0;
+}
+
+header {
+    font-size: 1.25em;
+    top: 0;
+}
+
+header img {
+    margin-right: 0.25em;
+}
+
+.main-menu {
+    height: 100%;
+    display: table;
+}
+
+.main-menu a {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 1em;
+    border-radius: 10px 10px 0 0;
+}
+
+.main-menu a.selected {
+    background: var(--content);
+}
+
+content {
+    margin: 50px 0;
+    padding: 5px 0.5em 0;
+    background: var(--content);
+    border-radius: 0 0 10px 10px;
+    height: calc(100vh - 105px);
+    display: block;
+}
+
+content>* {
+    width: 100%;
+    flex: 1;
+}
+
+.col {
+    display: flex;
+}
+
+.col>* {
+    flex: 1;
+}
+
+.pic {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: #444;
+    overflow: hidden;
+}
+
+.pic>img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.btn {
+    padding: 0.5em 2em;
+    background: #333333;
+    border-radius: 0.5em;
+    margin: 0 0.25em;
 }
