@@ -1,16 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
 <head>
     <title>06Games</title>
     <link rel="icon" type="image/png" href="assets/images/logo.png" />
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/loading.css" />
 
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/menu.js"></script>
 </head>
 
 <body>
     <header>
         <a href="#Home" style="display: flex; align-items: center; font-weight: bold;">
-            <img src="assets/images/logo.png" style="max-width: 35px;" />06Games
+            <img src="assets/images/logo.png" style="max-width: 35px;" alt="" />06Games
         </a>
         <span style="flex: 1;"></span>
         <span class="main-menu">
@@ -28,41 +36,15 @@
             </a>
         </span>
     </header>
-    <content>
-        <div class="loading" style="display: none;"></div>
-        <div class="content" style="height: 100%; overflow: auto;"></div>
-    </content>
+    <div class="page">
+        <div class="loading" style="display: none; display: flex; justify-content: center; align-items: center;">
+            <div class="ripple"></div>
+        </div>
+        <div class="content" style="overflow: auto;"></div>
+    </div>
     <footer>
         <span onclick="fr();">&copy; 06Games. All rights reserved.</span>
     </footer>
 </body>
 
-<script>
-    $(window).on('hashchange', function () {
-        changeMenu(window.location.hash);
-        $('html,body').scrollTop(0);
-    });
-    $hash = "#Home";
-    if (window.location.hash) $hash = window.location.hash;
-    changeMenu($hash);
-    $('html,body').scrollTop(0);
-
-    var lang = "en";
-    function changeMenu(id) {
-        $('.main-menu > a[href="' + id + '"]').addClass('selected');
-        $('.main-menu > a:not([href="' + id + '"])').removeClass('selected');
-
-        $("content .loading").fadeIn(200);
-        $("content .content").fadeOut(200, function () {
-            $(this).empty().load("pages/" + lang + "/" + id.substr(1).toLowerCase() + ".html", function () {
-                $("content .loading").fadeOut(200);
-                $("content .content").fadeIn(200);
-            });
-        });
-    }
-
-    function fr() {
-        lang = "fr";
-        changeMenu(window.location.hash);
-    }
-</script>
+</html>

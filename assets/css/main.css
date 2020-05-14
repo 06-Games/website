@@ -3,6 +3,10 @@
     --background: #282828;
 }
 
+/*************
+   Elements
+*************/
+
 body {
     color: #ccc;
     font-family: sans-serif;
@@ -28,6 +32,10 @@ h5 {
     margin: 0.5em 0 0.1em;
     font-size: 1em;
 }
+
+/*************
+    Layout
+*************/
 
 header, footer {
     width: calc(100vw - 1em);
@@ -69,19 +77,25 @@ header img {
     background: var(--content);
 }
 
-content {
-    margin: 50px 0;
-    padding: 5px 0.5em 0;
+.page {
+    padding: 1em 0.5em;
     background: var(--content);
     border-radius: 0 0 10px 10px;
-    height: calc(100vh - 105px);
     display: block;
+    position: fixed;
+    width: 100vw;
+    top: 50px;
+    bottom: 50px;
 }
 
-content>* {
+.page>* {
     width: 100%;
-    flex: 1;
+    height: 100%;
 }
+
+/************
+  Utilities
+************/
 
 .col {
     display: flex;
