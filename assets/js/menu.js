@@ -62,4 +62,10 @@ function registerSideMenu(contentDiv) {
             }
         });
     }
+
+    $menu.find(".openBtn").click(function () {
+        var open = $menu.offset().left < 0;
+        $menu.animate({ "left": open ? "+=300px" : "-=300px" });
+        $(this).text(open ? "<" : ">");
+    });
 }

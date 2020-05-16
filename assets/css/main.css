@@ -118,14 +118,22 @@ header img {
     .page {
         top: 100px;
     }
+    .side-menu {
+        top: 100px;
+    }
 }
 
 .side-menu {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 50px;
+    bottom: 50px;
     background: var(--background);
     width: 300px;
     height: 100%;
+}
+
+.side-menu .openBtn {
+    display: none;
 }
 
 .side-menu button {
@@ -144,8 +152,39 @@ header img {
     color: #eee;
 }
 
+@media(max-width:1023px) {
+    .side-menu {
+        left: -300px;
+    }
+    .side-menu .openBtn {
+        display: block;
+        width: 25px;
+        height: 100px;
+        background: var(--background);
+        position: absolute;
+        top: calc(50% - 100px);
+        right: -25px;
+        line-height: 100px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 800;
+        border-radius: 0 15px 15px 0;
+    }
+    .side-content {
+        margin-left: 0;
+    }
+}
+
+@media(min-width:1024px) {
+    .side-menu {
+        left: 0 !important;
+    }
+    .side-content {
+        margin-left: 300px;
+    }
+}
+
 .side-content {
-    flex: 1;
     height: 100%;
     overflow: auto;
 }
@@ -159,12 +198,13 @@ header img {
 }
 
 .side-content h2 {
-    margin: 1em 0 0;
+    margin: 0;
+    font-size: 2.5em;
 }
 
 .side-content hr {
     margin: 0 0 1em;
-    width: 300px;
+    width: 500px;
 }
 
 /************
@@ -221,11 +261,22 @@ header img {
 
 .galery {
     height: 70vh;
-    display: flex;
-    overflow: auto;
+    overflow: hidden;
+}
+
+.galery figure {
+    height: 100% !important;
+    text-align: center;
+}
+
+.galery figure figcaption {
+    display: none;
 }
 
 .galery img {
-    border-radius: 2em;
-    flex: 0;
+    border-radius: 25px;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
+    height: auto !important;
 }
