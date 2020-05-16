@@ -22,12 +22,44 @@ function changeMenu(id) {
 function language(val) {
     lang = val;
     Cookies.set('lang', val, { sameSite: 'Lax' });
-    $("footer").load("pages/" + lang + "/footer.html");
-    $(".main-menu").load("pages/" + lang + "/menu.html", function () {
+    $("footer").load("pages/" + lang + "/.footer.html");
+    $(".main-menu").load("pages/" + lang + "/.menu.html", function () {
         if (window.location.hash) {
             changeMenu(window.location.hash);
             $('html,body').scrollTop(0);
         }
         else window.location.hash = "#Home";
     });
+}
+
+function registerSideMenu(contentDiv) {
+    $(contentDiv).on("scroll", onScroll);
+    $menu = $(contentDiv).siblings(".side-menu");
+
+    $menu.find('button').on('click', function (e) {
+        e.preventDefault();
+        $(contentDiv).off("scroll");
+
+        $menu.find('button').removeClass('active');
+        $(this).addClass('active');
+
+        $target = $(contentDiv).find($(this).attr('href'));
+        $(contentDiv).stop().animate({ scrollTop: $(contentDiv).scrollTop() + $target.position().top - 26.72 }, 400, 'swing', function () {
+            $(contentDiv).on("scroll", onScroll);
+        });
+    });
+
+    function onScroll(event) {
+        var scrollPos = $(contentDiv).scrollTop() + 26.72;
+        var minPos = $(contentDiv).height();
+        $menu.find('button').each(function () {
+            var yPos = $(contentDiv).find($(this).attr('href')).find('h2').position().top;
+
+            if (yPos >= 0 && yPos < $(contentDiv).height() && minPos > yPos) {
+                $menu.find('button').removeClass("active");
+                $(this).addClass("active");
+                minPos = yPos;
+            }
+        });
+    }
 }
