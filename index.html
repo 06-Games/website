@@ -10,9 +10,12 @@
 
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/loading.css" />
+    <link rel="stylesheet" href="assets/css/jquery.sweet-dropdown.min.css" />
 
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/js.cookie.min.js"></script>
     <script src="assets/js/menu.js"></script>
+    <script src="assets/js/jquery.sweet-dropdown.min.js"></script>
 </head>
 
 <body>
@@ -21,20 +24,7 @@
             <img src="assets/images/logo.png" style="max-width: 35px;" alt="" />06Games
         </a>
         <span style="flex: 1;"></span>
-        <span class="main-menu">
-            <a href="#Home">
-                <span>Home</span>
-            </a>
-            <a href="#Games">
-                <span>Games</span>
-            </a>
-            <a href="#Apps">
-                <span>Apps</span>
-            </a>
-            <a href="#Account">
-                <span>Account</span>
-            </a>
-        </span>
+        <span class="main-menu"></span>
     </header>
     <div class="page">
         <div class="loading" style="display: none; display: flex; justify-content: center; align-items: center;">
@@ -42,9 +32,7 @@
         </div>
         <div class="content" style="overflow: auto;"></div>
     </div>
-    <footer>
-        <span onclick="fr();">&copy; 06Games. All rights reserved.</span>
-    </footer>
+    <footer style="display: flex;"></footer>
 </body>
 
 </html>

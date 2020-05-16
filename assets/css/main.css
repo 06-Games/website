@@ -1,6 +1,7 @@
 :root {
     --content: #2f2f2f;
     --background: #282828;
+    --element: #333333;
 }
 
 /*************
@@ -107,6 +108,7 @@ header img {
 .page>* {
     width: 100%;
     height: 100%;
+    margin-bottom: 1em;
 }
 
 @media(max-width:665px) {
@@ -156,6 +158,16 @@ header img {
 
 .btn {
     padding: 0.5em 2em;
-    background: #333333;
+    background: var(--element);
     border-radius: 0.5em;
+    border: none;
+    color: inherit;
+}
+
+.dropdown-menu.dark ul {
+    background: var(--element) !important;
+}
+
+.dropdown-menu.dark ul li>a {
+    background-color: inherit !important;
 }
