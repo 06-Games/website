@@ -12,10 +12,15 @@ function changeMenu(id) {
 
     $(".page .loading").show();
     $(".page .content").fadeOut(500, function () {
-        $(this).empty().load("pages/" + lang + "/" + id.substr(1).toLowerCase() + ".html", function () {
+        $pageName = "pages/" + lang + "/" + id.substr(1).toLowerCase();
+        $(this).empty().load($pageName + ".html", function (response, status, xhr) {
+            if (status == "error") $(this).empty().load($pageName + ".php", done);
+            else done();
+        });
+        function done() {
             $(".page .loading").hide();
             $(".page .content").fadeIn(500);
-        });
+        }
     });
 }
 
@@ -30,6 +35,7 @@ function language(val) {
         }
         else window.location.hash = "#Home";
     });
+
 }
 
 function registerSideMenu(contentDiv) {
@@ -67,5 +73,17 @@ function registerSideMenu(contentDiv) {
         var open = $menu.offset().left < 0;
         $menu.animate({ "left": open ? "+=300px" : "-=300px" });
         $(this).text(open ? "<" : ">");
+    });
+}
+
+function registerGalery($galeries) {
+    $galeries.each(function (i) {
+        var galery = $(this);
+        galery.attr('id', galery.parent().attr('id') + "-slide");
+        var figure = galery.children('figure');
+        figure.attr('id', galery.attr('id') + "Fig");
+        setTimeout(function () {
+            cssSlidy({ slidyContainerSelector: ('#' + galery.attr('id')), slidySelector: ('#' + figure.attr('id')), captionSource: 'alt' });
+        }, 100 * i);
     });
 }

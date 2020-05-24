@@ -1,7 +1,8 @@
 :root {
     --content: #2f2f2f;
     --background: #282828;
-    --element: #333333;
+    --element: #3a3a3a;
+    --elementDisabled: #333;
     --blue: #245;
 }
 
@@ -130,6 +131,7 @@ header img {
     background: var(--background);
     width: 300px;
     height: 100%;
+    z-index: 1;
 }
 
 .side-menu .openBtn {
@@ -171,7 +173,7 @@ header img {
         border-radius: 0 15px 15px 0;
     }
     .side-content {
-        margin-left: 0;
+        margin: 0 1em;
     }
 }
 
@@ -245,10 +247,16 @@ header img {
 .btn {
     padding: 0.5em 2em;
     background: var(--element);
-    border-radius: 0.5em;
+    border-radius: 8px;
     border: none;
     color: inherit;
     cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:disabled, .btn.disabled {
+    background: var(--elementDisabled);
 }
 
 .dropdown-menu.dark ul {
@@ -260,8 +268,14 @@ header img {
 }
 
 .galery {
-    height: 70vh;
+    max-height: 70vh;
     overflow: hidden;
+}
+
+@media(min-width:1024px) {
+    .galery {
+        height: 70vh;
+    }
 }
 
 .galery figure {
@@ -279,4 +293,20 @@ header img {
     max-height: 100%;
     width: auto !important;
     height: auto !important;
+}
+
+.dl {
+    min-width: 200px;
+    flex: initial;
+}
+
+@media(min-width:1024px) {
+    .dl {
+        width: 300px;
+    }
+}
+
+.dl .btn {
+    margin-bottom: 0.25em;
+    width: -moz-available;
 }
