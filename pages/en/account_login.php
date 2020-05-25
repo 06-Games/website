@@ -76,27 +76,27 @@
 				<?= isset($_SESSION['error']) ? $_SESSION['error'] : "" ?>
 			</div>
 			<div class="connect">
-				<h3>Se connecter avec un compte 06Games
-					<a onclick="$('.connect').fadeOut(300, function() { $('.create').fadeIn(500, function() {}); });">Pas de compte ?</a>
+				<h3>Sign in with a 06Games account
+					<a onclick="$('.connect').fadeOut(300, function() { $('.create').fadeIn(500, function() {}); });">Don't have an account ?</a>
 				</h3>
-				<input type="text" placeholder="Email ou Nom d'utilisateur" name="email" required />
-				<input type="password" placeholder="Mot de passe" name="password" autocomplete="password" required />
-				<input type="submit" value="Se connecter" name="signin" class="Submit" onclick="connectAccount();" />
+				<input type="text" placeholder="Email or Username" name="email" required />
+				<input type="password" placeholder="Password" name="password" autocomplete="new-password" required />
+				<input type="submit" value="Sign in" name="signin" class="Submit" onclick="connectAccount();" />
 			</div>
 			<div class="create" style="display: none;">
-				<h3>Créer un compte 06Games
-					<a onclick="$('.create').fadeOut(300, function() { $('.connect').fadeIn(500, function() {}); });">Déjà inscrit ?</a>
+				<h3>Create a 06Games account
+					<a onclick="$('.create').fadeOut(300, function() { $('.connect').fadeIn(500, function() {}); });">Already have an account ?</a>
 				</h3>
-				<input type="text" placeholder="Nom d'utilisateur" name="username" required />
-				<input type="text" placeholder="Nom complet" name="fullname" required />
+				<input type="text" placeholder="Username" name="username" required />
+				<input type="text" placeholder="Full Name" name="fullname" required />
 				<input type="email" placeholder="Email" name="email" required />
-				<input type="password" placeholder="Mot de passe" name="password" autocomplete="password" required />
-				<input type="password" placeholder="Confirmer le mot de passe" name="confirmpassword" autocomplete="password" required />
-				<input type="submit" value="S'inscrire" name="register" class="Submit" onclick="createAccount();" />
+				<input type="password" placeholder="Password" name="password" autocomplete="new-password" required />
+				<input type="password" placeholder="Confirm Password" name="confirmpassword" autocomplete="new-password" required />
+				<input type="submit" value="Register" name="register" class="Submit" onclick="createAccount();" />
 			</div>
 		</div>
 		<div id="other">
-			<h3>Ou se connecter avec</h3>
+			<h3>Or connect with</h3>
 			<div id="google" style="background: #4285F4;">
 				<span class="icon">
 					<span style="background-position: 100%;"></span>

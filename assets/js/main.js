@@ -37,11 +37,11 @@ function registerSideMenu(contentDiv) {
     $(contentDiv).on("scroll", onScroll);
     $menu = $(contentDiv).siblings(".side-menu");
 
-    $menu.find('button').on('click', function (e) {
+    $menu.find('button[href]').on('click', function (e) {
         e.preventDefault();
         $(contentDiv).off("scroll");
 
-        $menu.find('button').removeClass('active');
+        $menu.find('button[href]').removeClass('active');
         $(this).addClass('active');
 
         $target = $(contentDiv).find($(this).attr('href'));
@@ -53,11 +53,11 @@ function registerSideMenu(contentDiv) {
     function onScroll(event) {
         var scrollPos = $(contentDiv).scrollTop() + 26.72;
         var minPos = $(contentDiv).height();
-        $menu.find('button').each(function () {
+        $menu.find('button[href]').each(function () {
             var yPos = $(contentDiv).find($(this).attr('href')).find('h2').position().top;
 
             if (yPos >= 0 && yPos < $(contentDiv).height() && minPos > yPos) {
-                $menu.find('button').removeClass("active");
+                $menu.find('button[href]').removeClass("active");
                 $(this).addClass("active");
                 minPos = yPos;
             }

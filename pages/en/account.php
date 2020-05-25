@@ -15,7 +15,7 @@ if($account == null && isset($_GET['code'])){ ?>
 	};
 	xhr.send('code=' + token);
 </script>
-<p>Veuillez patienter</p>
+<p>Please wait</p>
 
 <?php 
 } 

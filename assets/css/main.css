@@ -145,7 +145,6 @@ header img {
     bottom: 50px;
     background: var(--background);
     width: 300px;
-    height: 100%;
     z-index: 1;
 }
 
@@ -162,6 +161,7 @@ header img {
     width: 100%;
     height: 50px;
     padding: 0.5em 1em;
+    cursor: pointer;
 }
 
 .side-menu button.active {
@@ -179,7 +179,7 @@ header img {
         height: 100px;
         background: var(--background);
         position: absolute;
-        top: calc(50% - 100px);
+        top: calc(50% - 50px);
         right: -25px;
         line-height: 100px;
         text-align: center;
