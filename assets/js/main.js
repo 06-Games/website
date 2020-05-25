@@ -12,15 +12,10 @@ function changeMenu(id) {
 
     $(".page .loading").show();
     $(".page .content").fadeOut(500, function () {
-        $pageName = "pages/" + lang + "/" + id.substr(1).toLowerCase();
-        $(this).empty().load($pageName + ".html", function (response, status, xhr) {
-            if (status == "error") $(this).empty().load($pageName + ".php", done);
-            else done();
-        });
-        function done() {
+        $(this).empty().load("pages/" + lang + "/" + id.substr(1).toLowerCase(), function () {
             $(".page .loading").hide();
             $(".page .content").fadeIn(500);
-        }
+        });
     });
 }
 
