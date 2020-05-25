@@ -35,6 +35,21 @@ h5 {
     font-size: 1em;
 }
 
+input {
+    border: 1px solid gray;
+    border-radius: 5px;
+    background: none;
+    color: inherit;
+    padding: 0.5em 0.75em;
+    margin-bottom: 0.5em;
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+}
+
 /*************
     Layout
 *************/
