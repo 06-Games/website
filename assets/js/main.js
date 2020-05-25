@@ -22,8 +22,8 @@ function changeMenu(id) {
 function language(val) {
     lang = val;
     Cookies.set('lang', val, { sameSite: 'Lax', expires: 365 });
-    $("footer").load("pages/" + lang + "/.footer.html");
-    $(".main-menu").load("pages/" + lang + "/.menu.html", function () {
+    $("footer").load("pages/" + lang + "/.footer");
+    $(".main-menu").load("pages/" + lang + "/.menu", function () {
         if (window.location.hash) {
             changeMenu(window.location.hash);
             $('html,body').scrollTop(0);
