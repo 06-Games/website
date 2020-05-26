@@ -5,7 +5,7 @@ if($account == null && isset($_GET['code'])){ ?>
 <script>
 	var token = "<?= $_GET['code'] ?>";
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '../../api/v1/accounts/auth/discord.php');
+	xhr.open('POST', '../../api/v1/accounts/auth/discord');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.onload = function() {
 		var json = JSON.parse(xhr.responseText);

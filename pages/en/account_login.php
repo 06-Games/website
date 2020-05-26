@@ -133,7 +133,7 @@
 		$pass = $("#account .connect input[name=password]").val();
 
 		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'api/v1/accounts/auth/06games/connect.php');
+		xhr.open('POST', 'api/v1/accounts/auth/06games/connect');
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		xhr.onload = function() {
 			$json = JSON.parse(xhr.responseText);
@@ -154,7 +154,7 @@
 
 		if ($password == $confirmpassword) {
 			var xhr = new XMLHttpRequest();
-			xhr.open('POST', 'api/v1/accounts/auth/06games/create.php');
+			xhr.open('POST', 'api/v1/accounts/auth/06games/create');
 			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			xhr.onload = function() {
 				$json = JSON.parse(xhr.responseText);
@@ -195,7 +195,7 @@
 		var token = googleUser.getAuthResponse().id_token;
 
 		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'api/v1/accounts/auth/google.php');
+		xhr.open('POST', 'api/v1/accounts/auth/google');
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		xhr.onload = function() {
 			$json = JSON.parse(xhr.responseText);
