@@ -11,19 +11,19 @@
 	<div class="side-content">
 		<div>
 			<div id="global">
-				<h3>Global</h3>
+				<h2>Global</h2>
 				<hr>
 			</div>
 			<div id="profile">
-				<h3>Profile</h3>
+				<h2>Profile</h2>
 				<hr>
 			</div>
 			<div id="external">
-				<h3>Linked Accounts</h3>
+				<h2>Linked Accounts</h2>
 				<hr>
 			</div>
 			<div id="library">
-				<h3>Library</h3>
+				<h2>Library</h2>
 				<hr>
 			</div>
 		</div>

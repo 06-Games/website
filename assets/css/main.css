@@ -325,3 +325,27 @@ header img {
     margin-bottom: 0.25em;
     width: -moz-available;
 }
+
+dl.horizontal dd {
+    margin: 0 0 0.75em;
+}
+
+dl.horizontal dd input {
+    margin: 0;
+}
+
+@media(min-width:550px) {
+    dl.horizontal>* {
+        display: inline-block;
+    }
+    dl.horizontal dt {
+        width: 20%;
+        text-align: right;
+        vertical-align: middle;
+        line-height: 100%;
+    }
+    dl.horizontal dd {
+        width: 75%;
+        margin: 0 0 0.75em 0.75em;
+    }
+}
