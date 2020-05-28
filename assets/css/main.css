@@ -349,3 +349,40 @@ dl.horizontal dd input {
         margin: 0 0 0.75em 0.75em;
     }
 }
+
+.modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #0005;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.modal>div {
+    width: 600px;
+    background: var(--content);
+    border-radius: 25px;
+    margin: auto;
+    padding: 3em 5em 4em;
+}
+
+.modal .head {
+    margin-bottom: 2em;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.modal .head #close {
+    float: right;
+    border: 1px solid gray;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 19px;
+    width: 21px;
+    height: 21px;
+    cursor: pointer;
+}

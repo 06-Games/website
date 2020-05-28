@@ -73,7 +73,7 @@
 </style>
 
 <div class="side-menu" style="display: flex; flex-direction: column;">
-	<button href="#global" class="active">General</button>
+	<button href="#global" class="active">Général</button>
 	<button href="#profile">Profil</button>
 	<button href="#external">Comptes liés</button>
 	<button href="#library">Bibliothèque</button>
@@ -84,11 +84,11 @@
 <div class="side-content">
 	<div>
 		<div id="global">
-			<h2>General</h2>
+			<h2>Général</h2>
 			<hr>
-			<a onclick="downloadData();" class="btn">Download the collected data</a>
+			<a onclick="downloadData();" class="btn">Télécharger les données collectées</a>
 			<a href="<?= (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['SERVER_NAME'] ?>:8887/fr/06games-account"
-			 target="_blank" class="btn">Read the documentation</a>
+			 target="_blank" class="btn">Lire la documentation</a>
 		</div>
 		<div id="profile">
 			<h2>Profil</h2>
@@ -101,23 +101,23 @@
 						 "?>" style="width: 100%;height: 100%;object-fit: contain;" />
 					</span>
 					<input type="file" accept="image/*" name="avatar" id="avatar" style="display:none;" onchange="updateAvatar(this);">
-					<button class="btn" type="button" style="margin: auto auto auto 2em;" onclick="$('#avatar').click();">Change It</button>
+					<button class="btn" type="button" style="margin: auto auto auto 2em;" onclick="$('#avatar').click();">Le changer</button>
 				</dd>
 				<dt>Votre nom d'utilisateur</dt>
 				<dd>
-					<input type="text" name="username" value="<?= $account['username'] ?>" placeholder="Enter your username">
+					<input type="text" name="username" value="<?= $account['username'] ?>" placeholder="Entrez votre nom d'utilisateur">
 				</dd>
 				<dt>Votre nom</dt>
 				<dd>
-					<input type="text" name="fullname" value="<?= $account['fullname'] ?>" placeholder="Enter your name">
+					<input type="text" name="fullname" value="<?= $account['fullname'] ?>" placeholder="Entrez votre nom">
 				</dd>
 				<dt>Votre adresse email</dt>
 				<dd>
-					<input type="text" name="email" value="<?= $account['email'] ?>" placeholder="Enter your email address">
+					<input type="text" name="email" value="<?= $account['email'] ?>" placeholder="Entrez votre adresse email">
 				</dd>
 				<dt></dt>
 				<dd>
-					<button class="btn" style="width: 100%; font-family: 'Roboto', Helvetica, sans-serif;" onclick="updateProfile();">Save</button>
+					<button class="btn" style="width: 100%; font-family: 'Roboto', Helvetica, sans-serif;" onclick="updateProfile();">Sauvegarder</button>
 				</dd>
 			</dl>
 		</div>
@@ -136,32 +136,32 @@
 					<tr>
 						<td>
 							<span class="image" style="background-image: url(assets/images/logo.png); background-size: 100%;"></span> 06Games</td>
-						<td>06Games is a French startup specializing in the creation of multi-platform video games.</td>
+						<td>06Games est une startup française spécialisée dans la création de jeux multi-plateformes.</td>
 						<td>
-							<a class="btn" onclick="$('.modal').show();" style="display: block;">
-								<?= $account['password'] == null ? "Set a password" : "Change the password"; ?>
+							<a class="btn" onclick="$('.modal').fadeIn(200);" style="display: block;">
+								<?= $account['password'] == null ? "Définir un mot de passe" : "Changer le mot de passe"; ?>
 							</a>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<span class="image" style="background-position: 100%;"></span> Google</td>
-						<td>Google specializes in Internet-related services and products, which include online advertising technologies, search
-							engine, cloud computing, software, and hardware.</td>
+						<td>Google est spécialisé dans les services et produits liés à Internet, qui incluent les technologies de publicité en
+							ligne, les moteurs de recherche, le cloud computing, les logiciels et le matériel.</td>
 						<td>
 							<a class="btn" onclick="googleAssociate();" style="display: block;">
-								<?= $account['googleID'] == null ? "Associate" : "Dissociate"; ?>
+								<?= $account['googleID'] == null ? "Associer" : "Dissocier"; ?>
 							</a>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<span class="image"></span> Discord</td>
-						<td style="font-size: 0.99em;">Discord is a proprietary freeware VoIP application designed for gaming communities, that specializes in text, video
-							and audio communication between users in a chat channel.</td>
+						<td>Discord est une application VoIP freeware propriétaire conçue pour les communautés de jeu, spécialisée dans la communication
+							textuelle, vidéo et audio entre les utilisateurs d'un canal de chat.</td>
 						<td>
 							<a class="btn" onclick="discordAssociate();" style="display: block;">
-								<?= $account['discordID'] == null ? "Associate" : "Dissociate"; ?>
+								<?= $account['discordID'] == null ? "Associer" : "Dissocier"; ?>
 							</a>
 						</td>
 					</tr>
@@ -174,12 +174,29 @@
 		</div>
 	</div>
 </div>
+
+
+<div class="modal" style="display: none;">
+	<div>
+		<div class="head">
+			<span>Changer votre mot de passe</span>
+			<span id="close" onclick="$(this).parents('.modal').fadeOut(200);">x</span>
+		</div>
+		<div class="content">
+			<input type="password" placeholder="Nouveau mot de passe" name="new-password" required />
+			<input type="password" placeholder="Confirmation du mot de passe" name="confirm-password" required />
+
+			<input value="<?= $account['password'] == " " ? " " : "Change password " ?>"
+			 style="margin-top: 1em;" type="submit" class="Submit" onclick="accountPassword();" />
+		</div>
+	</div>
+</div>
+
 <script>
 	registerSideMenu(".side-content");
 </script>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
-<script src="/assets/js/forge.min.js"></script>
 <script>
 	/**********
 	 *  Home  *
@@ -267,31 +284,21 @@
 	 * Linked  *
 	 ***********/
 
-	function sha384(str) {
-		return forge.md.sha384.create().update(str).digest().toHex();
-	}
-
 	function accountPassword() {
-		$oldPassword = $(".modal input[name=old-password]").val();
 		$newPassword = $(".modal input[name=new-password]").val();
 		$confirmPassword = $(".modal input[name=confirm-password]").val();
 
-		<?php if ($account['password'] != "") { ?>
-		if ("<?= $account['password'] ?>" != sha384($oldPassword)) alert(
-			'The old password is not the one expected');
-		else
-			<?php } ?>
-			if ($newPassword == $confirmPassword) {
-				var xhr = new XMLHttpRequest();
-				xhr.open('POST', "api/v1/accounts/manage/link");
-				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-				xhr.onload = function() {
-					$json = JSON.parse(xhr.responseText);
-					if ($json != null && $json['code'] == 0) changeMenu('#Account');
-					else if ($json != null) alert(xhr.responseText);
-				};
-				xhr.send('provider=06Games&authID=' + $newPassword);
-			} else alert('Confirmation field and password do not match');
+		if ($newPassword == $confirmPassword && $newPassword != "") {
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', "api/v1/accounts/manage/link");
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+				$json = JSON.parse(xhr.responseText);
+				if ($json != null && $json['code'] == 0) changeMenu('#Account');
+				else if ($json != null) alert(xhr.responseText);
+			};
+			xhr.send('provider=06Games&authID=' + $newPassword);
+		} else alert('Informations incorrectes');
 	}
 
 	function googleAssociate() {
@@ -342,7 +349,7 @@
 		};
 		xhr.send('provider=Google&authID=');
 		<?php } else { ?>
-		alert("You need to set a password before !");
+		alert("Vous devez d'abord définir un mot de passe !");
 		<?php } ?>
 	}
 
@@ -362,7 +369,7 @@
 		};
 		xhr.send('provider=Discord&authID=');
 		<?php } else { ?>
-		alert("You need to set a password before !");
+		alert("Vous devez d'abord définir un mot de passe !");
 		<?php } ?>
 	}
 </script>
