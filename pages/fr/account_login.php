@@ -214,6 +214,6 @@
 
 	function connectDiscord() {
 		window.location.href =
-			"https://discordapp.com/api/oauth2/authorize?response_type=code&client_id=648170006064136212&redirect_uri=<?= (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] ?>&scope=identify%20email";
+			"https://discord.com/api/oauth2/authorize?response_type=code&client_id=648170006064136212&redirect_uri=<?= $_SERVER['HTTP_REFERER'].'callback/discord' ?>&scope=identify%20email";
 	}
 </script>

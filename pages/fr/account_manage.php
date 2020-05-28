@@ -256,9 +256,113 @@
 		xhr.onload = function() {
 			$json = JSON.parse(xhr.responseText);
 			if ($json != null && $json['code'] == 0) changeMenu('#Account');
-			else if ($json != null) alert($json['state']);
+			else if ($json != null) alert(xhr.responseText);
 		};
 		xhr.send('avatar=' + encodeURIComponent($avatar).replace(new RegExp('%2B', 'g'), 'amp;PLUSamp;') + '&username=' +
 			$username + '&fullname=' + $fullname + '&email=' + $email);
+	}
+
+
+	/***********
+	 * Linked  *
+	 ***********/
+
+	function sha384(str) {
+		return forge.md.sha384.create().update(str).digest().toHex();
+	}
+
+	function accountPassword() {
+		$oldPassword = $(".modal input[name=old-password]").val();
+		$newPassword = $(".modal input[name=new-password]").val();
+		$confirmPassword = $(".modal input[name=confirm-password]").val();
+
+		<?php if ($account['password'] != "") { ?>
+		if ("<?= $account['password'] ?>" != sha384($oldPassword)) alert(
+			'The old password is not the one expected');
+		else
+			<?php } ?>
+			if ($newPassword == $confirmPassword) {
+				var xhr = new XMLHttpRequest();
+				xhr.open('POST', "api/v1/accounts/manage/link");
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				xhr.onload = function() {
+					$json = JSON.parse(xhr.responseText);
+					if ($json != null && $json['code'] == 0) changeMenu('#Account');
+					else if ($json != null) alert(xhr.responseText);
+				};
+				xhr.send('provider=06Games&authID=' + $newPassword);
+			} else alert('Confirmation field and password do not match');
+	}
+
+	function googleAssociate() {
+		<?php
+		if ($account['googleID'] == null) { ?>
+		gapi.load('auth2', function() {
+			// Retrieve the singleton for the GoogleAuth library and set up the client.
+			auth2 = gapi.auth2.init({
+				client_id: '162172060216-4vek345botmoamfalh5a4hn2llt76n7n.apps.googleusercontent.com',
+				cookiepolicy: 'single_host_origin'
+			});
+
+			var element = document.createElement('a');
+			element.style.display = 'none';
+			document.body.appendChild(element);
+
+			auth2.attachClickHandler(element, {}, connectGoogle,
+				function(error) {
+					alert(JSON.stringify(error, undefined, 2));
+				}
+			);
+
+			element.click();
+			document.body.removeChild(element);
+		});
+
+		function connectGoogle(googleUser) {
+			var token = googleUser.getAuthResponse().id_token;
+
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', "api/v1/accounts/manage/link");
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+				$json = JSON.parse(xhr.responseText);
+				if ($json != null && $json['code'] == 0) changeMenu('#Account');
+				else if ($json != null) alert(xhr.responseText);
+			};
+			xhr.send('provider=Google&authID=' + token);
+		}
+		<?php } else if ($account['password'] != null) { ?>
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', "api/v1/accounts/manage/link");
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+			$json = JSON.parse(xhr.responseText);
+			if ($json != null && $json['code'] == 0) changeMenu('#Account');
+			else if ($json != null) alert(xhr.responseText);
+		};
+		xhr.send('provider=Google&authID=');
+		<?php } else { ?>
+		alert("You need to set a password before !");
+		<?php } ?>
+	}
+
+	function discordAssociate() {
+		<?php
+		if ($account['discordID'] == null) { ?>
+		window.location.href =
+			"https://discord.com/api/oauth2/authorize?response_type=code&client_id=648170006064136212&redirect_uri=<?= $_SERVER['HTTP_REFERER'].'callback/discord' ?>&scope=identify%20email";
+		<?php } else if ($account['password'] != null) { ?>
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', "api/v1/accounts/manage/link");
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+			$json = JSON.parse(xhr.responseText);
+			if ($json != null && $json['code'] == 0) changeMenu('#Account');
+			else if ($json != null) alert(xhr.responseText);
+		};
+		xhr.send('provider=Discord&authID=');
+		<?php } else { ?>
+		alert("You need to set a password before !");
+		<?php } ?>
 	}
 </script>
