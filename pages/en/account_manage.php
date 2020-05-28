@@ -97,8 +97,9 @@
 				<dt>Your avatar</dt>
 				<dd>
 					<span class="pic" style="background: #272833; vertical-align: middle; display: inline-flex; width: 80px; height: 80px; border-radius: 4px;">
-						<img src="<?=$account['avatar'] ?? " https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y
-						 "?>" style="width: 100%;height: 100%;object-fit: contain;" />
+						<img src="<?= empty($account['avatar']) ? 
+						" https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y " 
+						: $account['avatar']?>" style="width: 100%;height: 100%;object-fit: contain;" />
 					</span>
 					<input type="file" accept="image/*" name="avatar" id="avatar" style="display:none;" onchange="updateAvatar(this);">
 					<button class="btn" type="button" style="margin: auto auto auto 2em;" onclick="$('#avatar').click();">Change It</button>
@@ -263,6 +264,7 @@
 
 	function updateProfile() {
 		$avatar = $("#profile .pic img").attr('src');
+		if (!$avatar.startsWith('data:image/png;base64,')) $avatar = null;
 		$username = $("#profile input[name=username]").val();
 		$fullname = $("#profile input[name=fullname]").val();
 		$email = $("#profile input[name=email]").val();
