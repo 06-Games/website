@@ -99,7 +99,7 @@
 					<span class="pic" style="background: #272833; vertical-align: middle; display: inline-flex; width: 80px; height: 80px; border-radius: 4px;">
 						<img src="<?= empty($account['avatar']) ? 
 						" https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y " 
-						: $account['avatar']?>" style="width: 100%;height: 100%;object-fit: contain;" />
+						: $account['avatar'] ?>" style="width: 100%;height: 100%;object-fit: contain;" />
 					</span>
 					<input type="file" accept="image/*" name="avatar" id="avatar" style="display:none;" onchange="updateAvatar(this);">
 					<button class="btn" type="button" style="margin: auto auto auto 2em;" onclick="$('#avatar').click();">Change It</button>
