@@ -1,6 +1,6 @@
 <?php
 if(isset($_GET['code'])){ 
-    include("../api/v1/accounts/.private/checkToken.php");
+    include "../api/v1/accounts/.private/checkToken.php";
     header('Content-Type: application/json;charset=utf-8');
 
     $path = substr(__DIR__, strlen(realpath('../')));
