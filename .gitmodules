@@ -1,3 +1,6 @@
 [submodule "api"]
 	path = api
 	url = https://github.com/06-Games/api
+[submodule "storage"]
+	path = storage
+	url = https://github.com/06-Games/storage
